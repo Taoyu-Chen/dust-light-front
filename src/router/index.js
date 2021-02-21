@@ -19,6 +19,11 @@ const routes = [
     path: '/publish/task',
     name: 'PublishTask',
     component: () => import('../views/PublishTask.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
   }
 ]
 

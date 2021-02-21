@@ -37,15 +37,15 @@
     <a-form-item label="Restricted area" name="restrict">
       <a-switch v-model:checked="form.restrict" />
     </a-form-item>
-    <a-form-item label="Integrity guarantee" name="type">
-      <a-checkbox-group v-model:value="form.type">
-        <a-checkbox value="1" name="type">
+    <a-form-item label="Integrity guarantee" name="guarantee">
+      <a-checkbox-group v-model:value="form.guarantee">
+        <a-checkbox value="1" name="guarantee">
           completion
         </a-checkbox>
-        <a-checkbox value="2" name="type">
+        <a-checkbox value="2" name="guarantee">
           after sale
         </a-checkbox>
-        <a-checkbox value="3" name="type">
+        <a-checkbox value="3" name="guarantee">
           original
         </a-checkbox>
       </a-checkbox-group>
@@ -95,11 +95,11 @@ export default {
           { required: true, message: 'Please input Task name', trigger: 'blur' },
           { min: 5, max: 20, message: 'Length should be 5 to 20', trigger: 'blur' }
         ],
-        region: [{ required: true, message: 'Please select Activity zone', trigger: 'change' }],
+        type: [{ required: true, message: 'Please select Task type', trigger: 'change' }],
         date1: [
           { required: true, message: 'Please pick a bid deadline', trigger: 'change', type: 'object' }
         ],
-        type: [
+        guarantee: [
           {
             type: 'array',
             required: true,
