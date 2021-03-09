@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-09 12:43:41
- * @LastEditTime: 2021-03-09 13:11:08
+ * @LastEditTime: 2021-03-09 13:50:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /dust-light-front/src/views/home/Home.vue
@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/variables.scss';
 @import '../../style/mixins.scss';
 .wrapper {
