@@ -5,27 +5,35 @@
       <input class="wrapper__input__content" placeholder="Please enter phone number" />
     </div>
     <div class="wrapper__input">
-      <input class="wrapper__input__content"  placeholder="Please enter Password" />
+      <input
+        class="wrapper__input__content"
+        placeholder="please enter password"
+        type="password"
+      />
     </div>
-    <div class="wrapper__login-button" @click="handleLogin">Login</div>
-    <div class="wrapper__login-link" @click="handleToRegisterClick">Quick Register</div>
+    <div class="wrapper__input">
+      <input
+        class="wrapper__input__content"
+        placeholder="confirm password"
+        type="password"
+      />
+    </div>
+    <div class="wrapper__register-button" @click="handleRegister">Register</div>
+    <div class="wrapper__register-link" @click="handleToLoginClick">Already have an account to log in</div>
   </div>
 </template>
 
 <script>
 import { useRouter } from 'vue-router'
 export default {
-  name: 'Login',
+  name: 'Register',
   setup () {
     const router = useRouter()
-    const handleLogin = () => {
-      localStorage.isLogin = true
-      router.push({ name: 'Home' })
+    const handleRegister = () => {}
+    const handleToLoginClick = () => {
+      router.push({ name: 'Login' })
     }
-    const handleToRegisterClick = () => {
-      router.push({ name: 'Register' })
-    }
-    return { handleLogin, handleToRegisterClick }
+    return { handleToLoginClick, handleRegister }
   }
 }
 </script>
@@ -46,7 +54,7 @@ export default {
   }
   &__input {
     height: .48rem;
-    margin: .25rem .4rem .16rem .4rem;
+    margin: 0 .4rem .16rem .4rem;
     padding: 0 .16rem;
     background: #F9F9F9;
     border: 1px solid rgba(0,0,0,0.10);
@@ -65,7 +73,7 @@ export default {
       }
     }
   }
-  &__login-button {
+  &__register-button {
     margin: .32rem .4rem .16rem .4rem;
     line-height: .48rem;
     background: #0091FF;
@@ -76,7 +84,7 @@ export default {
     font-size: .16rem;
     text-align: center;
   }
-  &__login-link {
+  &__register-link {
     text-align: center;
     font-size: .14rem;
     color: $content-notice-fontcolor;
