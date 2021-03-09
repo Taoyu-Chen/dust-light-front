@@ -7,14 +7,23 @@
     <div class="wrapper__input">
       <input class="wrapper__input__content"  placeholder="Please enter Password" />
     </div>
-    <div class="wrapper__login-button">Login</div>
+    <div class="wrapper__login-button" @click="handleLogin">Login</div>
     <div class="wrapper__login-link">Quick Register</div>
   </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
 export default {
-  name: 'Login'
+  name: 'Login',
+  setup () {
+    const router = useRouter()
+    const handleLogin = () => {
+      localStorage.isLogin = true
+      router.push({ name: 'Home' })
+    }
+    return { handleLogin }
+  }
 }
 </script>
 
@@ -25,7 +34,7 @@ export default {
   top: 50%;
   left: 0;
   right: 0;
-  transform: translateY(-50%);
+  transform: translateY(-60%);
   &__img {
     display: block;
     margin: 0 auto .4rem auto;
