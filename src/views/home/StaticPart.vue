@@ -15,45 +15,17 @@
       />
     </div>
     <div class="icons">
-      <div class="icons__item">
+      <div
+        class="icons__item"
+        v-for="(item, index) in iconsList"
+        :key="index"
+      >
         <img
           class="icons__item__img"
-          src="https://gitee.com/sevensound/pic-cloud/raw/master/design.png"
+          :src="`https://gitee.com/sevensound/pic-cloud/raw/master/${item.imgName}.png`"
           alt=""
         >
-        <p class="icons__item__desc">design</p>
-      </div>
-      <div class="icons__item">
-        <img
-          class="icons__item__img"
-          src="https://gitee.com/sevensound/pic-cloud/raw/master/design.png"
-          alt=""
-        >
-        <p class="icons__item__desc">design</p>
-      </div>
-      <div class="icons__item">
-        <img
-          class="icons__item__img"
-          src="https://gitee.com/sevensound/pic-cloud/raw/master/design.png"
-          alt=""
-        >
-        <p class="icons__item__desc">design</p>
-      </div>
-      <div class="icons__item">
-        <img
-          class="icons__item__img"
-          src="https://gitee.com/sevensound/pic-cloud/raw/master/design.png"
-          alt=""
-        >
-        <p class="icons__item__desc">design</p>
-      </div>
-      <div class="icons__item">
-        <img
-          class="icons__item__img"
-          src="https://gitee.com/sevensound/pic-cloud/raw/master/design.png"
-          alt=""
-        >
-        <p class="icons__item__desc">design</p>
+        <p class="icons__item__desc">{{item.desc}}</p>
       </div>
     </div>
     <div class="gap"></div>
@@ -61,7 +33,17 @@
 
 <script>
 export default {
-  name: 'StaticPart'
+  name: 'StaticPart',
+  setup () {
+    const iconsList = [
+      { imgName: 'design', desc: 'design' },
+      { imgName: 'design', desc: 'design' },
+      { imgName: 'design', desc: 'design' },
+      { imgName: 'design', desc: 'design' },
+      { imgName: 'design', desc: 'design' }
+    ]
+    return { iconsList }
+  }
 }
 </script>
 

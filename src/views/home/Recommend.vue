@@ -1,60 +1,69 @@
 <template>
   <div class="recommend">
-      <div class="recommend__title">Recommended order</div>
-      <div class="recommend__item">
-        <img
-          class="recommend__item__img"
-          src="https://gitee.com/sevensound/pic-cloud/raw/master/20210309011101.png"
-          alt=""
-        >
-        <div class="recommend__content">
-          <div class="recommend__content__title">XXX</div>
-          <div class="recommend__content__tags">
-            <span class="recommend__content__tag">High credit </span>
-            <span class="recommend__content__tag">High credit </span>
-            <span class="recommend__content__tag">High credit </span>
-          </div>
-          <div class="recommend__content__highlight">Novice task, high pay</div>
+    <div class="recommend__title">Recommended order</div>
+    <div
+      class="recommend__item"
+      v-for="item in recommendList"
+      :key="item.id"
+    >
+      <img
+        class="recommend__item__img"
+        :src="item.imgUrl"
+        alt=""
+      >
+      <div class="recommend__content">
+        <div class="recommend__content__title">{{item.title}}</div>
+        <div class="recommend__content__tags">
+          <span
+            class="recommend__content__tag"
+            v-for="(innerItem, innerIndex) in item.tags"
+            :key="innerIndex"
+          >{{innerItem}}</span>
         </div>
+        <div class="recommend__content__highlight">{{item.desc}}</div>
       </div>
-      <div class="recommend__item">
-        <img
-          class="recommend__item__img"
-          src="https://gitee.com/sevensound/pic-cloud/raw/master/20210309011101.png"
-          alt=""
-        >
-        <div class="recommend__content">
-          <div class="recommend__content__title">XXX</div>
-          <div class="recommend__content__tags">
-            <span class="recommend__content__tag">High credit </span>
-            <span class="recommend__content__tag">High credit </span>
-            <span class="recommend__content__tag">High credit </span>
-          </div>
-          <div class="recommend__content__highlight">Novice task, high pay</div>
-        </div>
-      </div>
-      <div class="recommend__item">
-        <img
-          class="recommend__item__img"
-          src="https://gitee.com/sevensound/pic-cloud/raw/master/20210309011101.png"
-          alt=""
-        >
-        <div class="recommend__content">
-          <div class="recommend__content__title">XXX</div>
-          <div class="recommend__content__tags">
-            <span class="recommend__content__tag">High credit </span>
-            <span class="recommend__content__tag">High credit </span>
-            <span class="recommend__content__tag">High credit </span>
-          </div>
-          <div class="recommend__content__highlight">Novice task, high pay</div>
-        </div>
-      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Recommend'
+  name: 'Recommend',
+  setup () {
+    const recommendList = [{
+      id: 1,
+      imgUrl: 'https://gitee.com/sevensound/pic-cloud/raw/master/20210309011101.png',
+      title: 'XXX',
+      tags: ['High credit', 'High credit', 'High credit'],
+      desc: 'Novice task, high pay'
+    }, {
+      id: 2,
+      imgUrl: 'https://gitee.com/sevensound/pic-cloud/raw/master/20210309011101.png',
+      title: 'XXX',
+      tags: ['High credit', 'High credit', 'High credit'],
+      desc: 'Novice task, high pay'
+    }, {
+      id: 3,
+      imgUrl: 'https://gitee.com/sevensound/pic-cloud/raw/master/20210309011101.png',
+      title: 'XXX',
+      tags: ['High credit', 'High credit', 'High credit'],
+      desc: 'Novice task, high pay'
+    }, {
+      id: 4,
+      imgUrl: 'https://gitee.com/sevensound/pic-cloud/raw/master/20210309011101.png',
+      title: 'XXX',
+      tags: ['High credit', 'High credit', 'High credit'],
+      desc: 'Novice task, high pay'
+    }, {
+      id: 5,
+      imgUrl: 'https://gitee.com/sevensound/pic-cloud/raw/master/20210309011101.png',
+      title: 'XXX',
+      tags: ['High credit', 'High credit', 'High credit'],
+      desc: 'Novice task, high pay'
+    }
+    ]
+    return { recommendList }
+  }
 }
 </script>
 
@@ -78,6 +87,7 @@ export default {
   }
   &__content {
     flex: 1;
+    padding-left: .13rem;
     padding-bottom: .12rem;
     border-bottom: 1px solid $content-bgcolor;
     &__title {

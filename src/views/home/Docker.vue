@@ -1,27 +1,29 @@
 <template>
   <div class="docker">
-    <span class="docker__item docker__item--active">
-      <div class="iconfont">&#xe6ac;</div>
-      <div class="docker__title">Home</div>
-    </span>
-    <span class="docker__item">
-      <div class="iconfont">&#xe685;</div>
-      <div class="docker__title">Publish</div>
-    </span>
-    <span class="docker__item">
-      <div class="iconfont">&#xe6e9;</div>
-      <div class="docker__title">Contact</div>
-    </span>
-    <span class="docker__item">
-      <div class="iconfont">&#xe658;</div>
-      <div class="docker__title">My</div>
-    </span>
+    <div
+      v-for="(item, index) in dockerList"
+      :class="{'docker__item': true, 'docker__item--active': index ===0}"
+      class="docker__item"
+      :key="item.icon"
+    >
+      <div class="iconfont" v-html="item.icon"></div>
+      <div class="docker__title">{{item.text}}</div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Docker'
+  name: 'Docker',
+  setup () {
+    const dockerList = [
+      { icon: '&#xe6ac;', text: 'Home' },
+      { icon: '&#xe685;', text: 'Publish' },
+      { icon: '&#xe6e9;', text: 'Contact' },
+      { icon: '&#xe658;', text: 'My' }
+    ]
+    return { dockerList }
+  }
 }
 </script>
 
