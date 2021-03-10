@@ -1,9 +1,4 @@
 <template>
-  <div class="header">
-      <span class="iconfont header__icon">&#xe646;</span>
-      Welcome to Dust Light App
-      <span class="iconfont header__notice">&#xe609;</span>
-    </div>
     <div class="search">
       <span class="iconfont header__notice">&#xe610;</span>
       <span class="search__text">Order Tracking</span>
@@ -49,30 +44,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../style/variables.scss';
-@import '../../style/mixins.scss';
-.header {
-  position: relative;
-  padding: .16rem 0;
-  line-height: .22rem;
-  font-size: .21rem;
-  @include ellipsis;
-  .header__icon {
-    position: relative;
-    margin-right: .24rem;
-    right: .05rem;
-    top: .01rem;
-    margin: .08rem;
-    font-size: .2rem;
-  }
-  .header__notice {
-    position: relative;
-    left: .05rem;
-    top: .01rem;
-    margin: .08rem;
-    font-size: .2rem;
-  }
-  color: $content-fontcolor;
-}
 .search {
   line-height: .32rem;
   background: #f5f5f5;

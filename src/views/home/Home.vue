@@ -8,8 +8,9 @@
 -->
 <template>
   <div class="wrapper">
-    <StaticPart />
-    <Recommend />
+    <home-header />
+    <static-part />
+    <recommend />
   </div>
   <Docker />
 </template>
@@ -17,13 +18,15 @@
 <script>
 import StaticPart from './StaticPart'
 import Recommend from './Recommend'
+import HomeHeader from './HomeHeader'
 import Docker from './Docker'
 export default {
   name: 'Home',
   components: {
     StaticPart,
     Recommend,
-    Docker
+    Docker,
+    HomeHeader
   }
 }
 </script>

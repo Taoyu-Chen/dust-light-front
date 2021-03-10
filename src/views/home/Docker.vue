@@ -1,15 +1,15 @@
 <template>
-  <div class="docker">
-    <div
-      v-for="(item, index) in dockerList"
-      :class="{'docker__item': true, 'docker__item--active': index ===0}"
-      class="docker__item"
-      :key="item.icon"
-    >
-      <div class="iconfont" v-html="item.icon"></div>
-      <div class="docker__title">{{item.text}}</div>
+    <div class="docker">
+      <div
+        v-for="(item, index) in dockerList"
+        :class="{'docker__item': true, 'docker__item--active': index ===0}"
+        class="docker__item"
+        :key="item.icon"
+      >
+        <div class="iconfont" v-html="item.icon"></div>
+        <div class="docker__title">{{item.text}}</div>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -31,7 +31,6 @@ export default {
 @import '../../style/variables.scss';
 .docker {
   display: flex;
-  box-sizing: border-box;
   position: absolute;
   padding: 0 .18rem;
   left: 0;
@@ -39,7 +38,8 @@ export default {
   width: 100%;
   height: .49rem;
   border-top: .01rem solid $content-bgcolor;
-  color: $content-fontcolor;
+  color: $docker-fontcolor;
+  background-color: $docker-bgcolor;
   &__item {
     flex: 1;
     text-align: center;
@@ -48,7 +48,7 @@ export default {
       font-size: .22rem;
     }
     &--active {
-      color: #1FA4FC;
+      color: $docker-activeColor;
     }
   }
   &__title {
