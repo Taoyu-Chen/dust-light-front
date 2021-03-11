@@ -16,9 +16,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/publish/task',
-    name: 'PublishTask',
-    component: () => import('../views/PublishTask.vue')
+    path: '/bp/publish',
+    name: 'PublishForm',
+    component: () => import('../views/businessPeople/tasks/PublishForm.vue')
   },
   {
     path: '/login',
