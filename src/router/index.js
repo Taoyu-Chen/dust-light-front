@@ -16,9 +16,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/bp/publish',
-    name: 'PublishForm',
-    component: () => import('../views/businessPeople/tasks/PublishForm.vue')
+    path: '/admin',
+    name: 'AdminHome',
+    component: () => import('../views/administer/home/index.vue')
+  },
+  {
+    path: '/admin/announcement',
+    name: 'PublishAnnouncement',
+    component: () => import('../views/administer/announcement/index.vue')
+  },
+  {
+    path: '/admin/users',
+    name: 'ManageUsers',
+    component: () => import('../views/administer/users/index.vue')
   },
   {
     path: '/login',
