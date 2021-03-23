@@ -14,7 +14,7 @@ import Search from '../../common/home/Search.vue'
 import Header from '../../common/home/Header.vue'
 
 export default {
-  name: 'BPHome',
+  name: 'AdminHome',
   components: {
     Tabbar,
     Search,

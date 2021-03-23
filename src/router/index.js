@@ -31,6 +31,11 @@ const routes = [
     component: () => import('../views/administer/users/index.vue')
   },
   {
+    path: '/bp',
+    name: 'BPHome',
+    component: () => import('../views/businessPeople/home/index.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/login/Login.vue'),
