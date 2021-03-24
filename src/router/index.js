@@ -46,6 +46,11 @@ const routes = [
     component: () => import('../views/businessPeople/contact/index.vue')
   },
   {
+    path: '/bp/contact/add',
+    name: 'BPAddContact',
+    component: () => import('../views/businessPeople/contact/AddContact.vue')
+  },
+  {
     path: '/bp/my',
     name: 'BPMy',
     component: () => import('../views/businessPeople/my/index.vue')

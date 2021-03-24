@@ -1,4 +1,5 @@
 <template>
+  <Nav />
   <van-contact-card type="add" @click="onAdd" />
 
   <van-contact-card
@@ -14,16 +15,20 @@
 import { reactive } from 'vue'
 import { Toast } from 'vant'
 import Tabbar from '../../businessPeople/Tabbar.vue'
+import Nav from './Nav'
 
 export default {
-  components: { Tabbar },
+  components: {
+    Tabbar,
+    Nav
+  },
   setup () {
     const currentContact = reactive({
-      name: '张三',
+      name: 'Zhangsan',
       tel: '13000000000'
     })
-    const onAdd = () => Toast('新增')
-    const onEdit = () => Toast('新增')
+    const onAdd = () => Toast('Add')
+    const onEdit = () => Toast('Edit')
     return {
       onAdd,
       onEdit,
