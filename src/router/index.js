@@ -36,6 +36,21 @@ const routes = [
     component: () => import('../views/businessPeople/home/index.vue')
   },
   {
+    path: '/bp/publish',
+    name: 'PublishTask',
+    component: () => import('../views/businessPeople/publish/index.vue')
+  },
+  {
+    path: '/bp/contact',
+    name: 'BPContact',
+    component: () => import('../views/businessPeople/contact/index.vue')
+  },
+  {
+    path: '/bp/my',
+    name: 'BPMy',
+    component: () => import('../views/businessPeople/my/index.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/login/Login.vue'),
