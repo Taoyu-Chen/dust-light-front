@@ -15,7 +15,7 @@ export default {
   setup () {
     const images = [
       'https://gitee.com/sevensound/pic-cloud/raw/master/home1.png',
-      'https://img.yzcdn.cn/vant/apple-2.jpg'
+      'https://gitee.com/sevensound/pic-cloud/raw/master/home2.png'
     ]
     return { images }
   }

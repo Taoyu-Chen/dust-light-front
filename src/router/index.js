@@ -56,6 +56,31 @@ const routes = [
     component: () => import('../views/businessPeople/my/index.vue')
   },
   {
+    path: '/fd',
+    name: 'FDHome',
+    component: () => import('../views/freelancerDesigner/home/index.vue')
+  },
+  {
+    path: '/fd/bid',
+    name: 'BidTask',
+    component: () => import('../views/freelancerDesigner/bid/index.vue')
+  },
+  {
+    path: '/fd/contact',
+    name: 'FDContact',
+    component: () => import('../views/freelancerDesigner/contact/index.vue')
+  },
+  {
+    path: '/fd/contact/add',
+    name: 'FDAddContact',
+    component: () => import('../views/freelancerDesigner/contact/AddContact.vue')
+  },
+  {
+    path: '/fd/my',
+    name: 'FDMy',
+    component: () => import('../views/freelancerDesigner/my/index.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/login/Login.vue'),

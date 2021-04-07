@@ -1,0 +1,128 @@
+{
+  "id": "2379889",
+  "name": "dust light",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "众包设计平台",
+  "glyphs": [
+    {
+      "icon_id": "1314980",
+      "name": "UI中国",
+      "font_class": "UIzhongguo",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "3757971",
+      "name": "绘画",
+      "font_class": "huihua",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "5603499",
+      "name": "政策宣传",
+      "font_class": "zhengcexuanchuan",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "7797836",
+      "name": "海报设计",
+      "font_class": "haibaosheji",
+      "unicode": "e6c5",
+      "unicode_decimal": 59077
+    },
+    {
+      "icon_id": "7797863",
+      "name": "LOGO设计",
+      "font_class": "LOGOsheji",
+      "unicode": "e6cc",
+      "unicode_decimal": 59084
+    },
+    {
+      "icon_id": "8679366",
+      "name": "视频",
+      "font_class": "shipin",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "10861312",
+      "name": "云宣传册",
+      "font_class": "yunxuanchuance",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "13042472",
+      "name": "门票",
+      "font_class": "menpiao",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "13126705",
+      "name": "search",
+      "font_class": "tubiaozhizuomoban-",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "19099093",
+      "name": "Bell",
+      "font_class": "Bell",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "9927997",
+      "name": "welcome",
+      "font_class": "welcome",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "17412192",
+      "name": "Contact Card Group-1",
+      "font_class": "ContactCardGroup-1",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "7239429",
+      "name": "contacts",
+      "font_class": "contacts",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
+      "icon_id": "797173",
+      "name": "预定中心",
+      "font_class": "yudingzhongxin",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "1261803",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e6ac",
+      "unicode_decimal": 59052
+    },
+    {
+      "icon_id": "6664190",
+      "name": "order",
+      "font_class": "order",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "15269969",
+      "name": "my",
+      "font_class": "my",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    }
+  ]
+}

@@ -1,8 +1,7 @@
 <template>
-    <div class="wrapper">
-    <div class="gap"></div>
-      <el-card class="box-card">
-      </el-card>
+  <div class="wrapper">
+    <el-card class="box-card">
+    </el-card>
   </div>
 </template>
 

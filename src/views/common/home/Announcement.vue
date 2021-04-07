@@ -2,13 +2,14 @@
   <a-page-header
       class="demo-page-header"
       style="border: 1px solid rgb(235, 237, 240)"
-      title="Title"
-      sub-title="Time"
+      title="Announcement Title"
+      sub-title="Post time"
     >
       <a-descriptions size="small" :column="1">
-        <a-descriptions-item>summary</a-descriptions-item>
-      </a-descriptions>
-    </a-page-header>
+        <a-descriptions-item>content summary</a-descriptions-item>
+    </a-descriptions>
+  </a-page-header>
+
 </template>
 
 <script>
