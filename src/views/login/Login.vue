@@ -1,31 +1,79 @@
 <template>
   <div class="wrapper">
-    <img class="wrapper__img" src="https://gitee.com/sevensound/pic-cloud/raw/master/user.gif"/>
-    <div class="wrapper__input">
-      <input class="wrapper__input__content" placeholder="Please enter phone number" />
-    </div>
-    <div class="wrapper__input">
-      <input class="wrapper__input__content"  placeholder="Please enter Password" />
-    </div>
-    <div class="wrapper__login-button" @click="handleLogin">Login</div>
+    <img class="wrapper__img" src="https://gitee.com/sevensound/pic-cloud/raw/master/dust_light_logo_v4.png"/>
+    <van-form @submit="handleLogin">
+      <van-field
+        v-model="state.username"
+        name="username"
+        label="Username"
+        placeholder="username"
+        :rules="[{ required: true, message: 'Username is required' }]"
+      />
+      <van-field
+        v-model="state.password"
+        type="password"
+        name="password"
+        label="Password"
+        placeholder="password"
+        :rules="[{ required: true, message: 'Password is required' }]"
+      />
+      <van-field
+        v-model="state.type"
+        readonly
+        clickable
+        name="usertype"
+        label="User type"
+        placeholder="Select user type"
+        @click="state.showPicker = true"
+        :rules="[{ required: true, message: 'User type is required' }]"
+      />
+      <van-popup v-model:show="state.showPicker" position="bottom">
+        <van-picker
+          :columns="columns"
+          @confirm="onConfirm"
+          @cancel="state.showPicker = false"
+        />
+      </van-popup>
+      <div style="margin: 20px 15px;">
+        <van-button round block type="primary" native-type="submit" size="large">
+          Login
+        </van-button>
+      </div>
+    </van-form>
     <div class="wrapper__login-link" @click="handleToRegisterClick">Quick Register</div>
   </div>
 </template>
 
 <script>
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 export default {
   name: 'Login',
   setup () {
     const router = useRouter()
-    const handleLogin = () => {
+    const state = reactive({
+      username: '',
+      password: '',
+      type: ''
+    })
+
+    const columns = ['Administer', 'Business People', 'Freelancer Designer']
+
+    const handleLogin = (values) => {
+      console.log('submit', values)
       localStorage.isLogin = true
       router.push({ name: 'Home' })
     }
+
+    const onConfirm = (type) => {
+      state.type = type
+      state.showPicker = false
+    }
+
     const handleToRegisterClick = () => {
       router.push({ name: 'Register' })
     }
-    return { handleLogin, handleToRegisterClick }
+    return { state, handleLogin, handleToRegisterClick, columns, onConfirm }
   }
 }
 </script>
@@ -39,46 +87,14 @@ export default {
   right: 0;
   transform: translateY(-60%);
   &__img {
-    display: block;
-    margin: 0 auto .4rem auto;
-    width: 2rem;
+    width: 88%;
     height: 2rem;
-  }
-  &__input {
-    height: .48rem;
-    margin: .25rem .4rem .16rem .4rem;
-    padding: 0 .16rem;
-    background: #F9F9F9;
-    border: 1px solid rgba(0,0,0,0.10);
-    border-radius: 6px;
-    border-radius: 6px;
-    &__content {
-      line-height: .48rem;
-      border: none;
-      outline: none;
-      width: 100%;
-      background: none;
-      font-size: .16rem;
-      color: $content-notice-fontcolor;
-      &::placeholder {
-        color: $content-notice-fontcolor;
-      }
-    }
-  }
-  &__login-button {
-    margin: .32rem .4rem .16rem .4rem;
-    line-height: .48rem;
-    background: #0091FF;
-    box-shadow: 0 .04rem .08rem 0 rgba(0,145,255,0.32);
-    border-radius: .04rem;
-    border-radius: .04rem;
-    color: #fff;
-    font-size: .16rem;
-    text-align: center;
+    margin-bottom: .4rem;
   }
   &__login-link {
     text-align: center;
-    font-size: .14rem;
+    font-size: .15rem;
+    text-decoration: underline;
     color: $content-notice-fontcolor;
   }
 }

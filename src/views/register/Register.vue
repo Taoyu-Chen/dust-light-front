@@ -1,39 +1,101 @@
 <template>
   <div class="wrapper">
-    <img class="wrapper__img" src="https://gitee.com/sevensound/pic-cloud/raw/master/user.gif"/>
-    <div class="wrapper__input">
-      <input class="wrapper__input__content" placeholder="Please enter phone number" />
-    </div>
-    <div class="wrapper__input">
-      <input
-        class="wrapper__input__content"
-        placeholder="please enter password"
-        type="password"
+    <img class="wrapper__img" src="https://gitee.com/sevensound/pic-cloud/raw/master/dust_light_logo_v4.png"/>
+    <van-form @submit="handleRegister">
+      <van-field
+        v-model="state.username"
+        name="username"
+        label="Username"
+        placeholder="username"
+        :rules="[{ required: true, message: 'Username is required' }]"
       />
-    </div>
-    <div class="wrapper__input">
-      <input
-        class="wrapper__input__content"
-        placeholder="confirm password"
+      <van-field
+        v-model="state.password"
         type="password"
+        name="password"
+        label="Password"
+        placeholder="password"
+        :rules="[{ required: true, message: 'Password is required' }]"
       />
-    </div>
-    <div class="wrapper__register-button" @click="handleRegister">Register</div>
+      <van-field
+        v-model="state.type"
+        readonly
+        clickable
+        name="usertype"
+        label="User type"
+        placeholder="Select user type"
+        @click="state.showPicker = true"
+        :rules="[{ required: true, message: 'User type is required' }]"
+      />
+      <van-popup v-model:show="state.showPicker" position="bottom">
+        <van-picker
+          :columns="columns"
+          @confirm="onConfirm"
+          @cancel="state.showPicker = false"
+        />
+      </van-popup>
+      <van-field
+        v-model="state.telephone"
+        name="telephone"
+        label="Telephone"
+        placeholder="Please enter your telephone"
+        :rules="[{ required: true, message: 'Telephone is required' }]"
+      />
+      <van-field
+        v-model="state.email"
+        name="email"
+        label="Email"
+        placeholder="Please enter your email"
+        :rules="[{ required: true, message: 'Email is required' }]"
+      />
+      <van-field
+        v-model="state.personalSignature"
+        name="personalSignature"
+        label="Personal Signature"
+        placeholder="Please enter your personal signature"
+      />
+      <div style="margin: 20px 15px;">
+        <van-button round block type="primary" native-type="submit" size="large">
+          Register
+        </van-button>
+      </div>
+    </van-form>
     <div class="wrapper__register-link" @click="handleToLoginClick">Already have an account to log in</div>
   </div>
 </template>
 
 <script>
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 export default {
   name: 'Register',
   setup () {
     const router = useRouter()
-    const handleRegister = () => {}
+    const state = reactive({
+      username: '',
+      password: '',
+      type: '',
+      telephone: '',
+      personalSignature: ''
+    })
+
+    const columns = ['Administer', 'Business People', 'Freelancer Designer']
+
+    const handleRegister = (values) => {
+      console.log('submit', values)
+      // localStorage.isLogin = true
+      // router.push({ name: 'Home' })
+    }
+
+    const onConfirm = (type) => {
+      state.type = type
+      state.showPicker = false
+    }
+
     const handleToLoginClick = () => {
       router.push({ name: 'Login' })
     }
-    return { handleToLoginClick, handleRegister }
+    return { state, handleRegister, handleToLoginClick, columns, onConfirm }
   }
 }
 </script>
@@ -42,51 +104,19 @@ export default {
 @import '../../style/variables.scss';
 .wrapper {
   position: absolute;
-  top: 50%;
+  top: 57%;
   left: 0;
   right: 0;
   transform: translateY(-60%);
   &__img {
-    display: block;
-    margin: 0 auto .4rem auto;
-    width: 2rem;
+    width: 88%;
     height: 2rem;
-  }
-  &__input {
-    height: .48rem;
-    margin: 0 .4rem .16rem .4rem;
-    padding: 0 .16rem;
-    background: #F9F9F9;
-    border: 1px solid rgba(0,0,0,0.10);
-    border-radius: 6px;
-    border-radius: 6px;
-    &__content {
-      line-height: .48rem;
-      border: none;
-      outline: none;
-      width: 100%;
-      background: none;
-      font-size: .16rem;
-      color: $content-notice-fontcolor;
-      &::placeholder {
-        color: $content-notice-fontcolor;
-      }
-    }
-  }
-  &__register-button {
-    margin: .32rem .4rem .16rem .4rem;
-    line-height: .48rem;
-    background: #0091FF;
-    box-shadow: 0 .04rem .08rem 0 rgba(0,145,255,0.32);
-    border-radius: .04rem;
-    border-radius: .04rem;
-    color: #fff;
-    font-size: .16rem;
-    text-align: center;
+    margin-bottom: .1rem;
   }
   &__register-link {
     text-align: center;
-    font-size: .14rem;
+    font-size: .15rem;
+    text-decoration: underline;
     color: $content-notice-fontcolor;
   }
 }
