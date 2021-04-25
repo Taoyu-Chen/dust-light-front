@@ -1,9 +1,12 @@
 <template>
-  <van-tabbar v-model="active">
-    <van-tabbar-item icon="wap-home">Home</van-tabbar-item>
-    <van-tabbar-item icon="bill">Publish</van-tabbar-item>
-    <van-tabbar-item icon="friends">Contact</van-tabbar-item>
-    <van-tabbar-item icon="user-circle-o">My</van-tabbar-item>
+  <transition name="van-fade">
+    <router-view />
+  </transition>
+  <van-tabbar route placeholder v-model="active">
+    <van-tabbar-item icon="wap-home" is-link to="/bp">Home</van-tabbar-item>
+    <van-tabbar-item icon="bill" is-link to="/bp/publish">Publish</van-tabbar-item>
+    <van-tabbar-item icon="friends" is-link to="/bp/contact">Contact</van-tabbar-item>
+    <van-tabbar-item icon="user-circle-o" is-link to="/bp/my">My</van-tabbar-item>
   </van-tabbar>
 
 </template>

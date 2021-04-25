@@ -1,7 +1,6 @@
 <template>
-  <Nav />
+  <Header :name="'Contact Book'" />
   <van-contact-card type="add" @click="onAdd" />
-
   <van-contact-card
     type="edit"
     :name="currentContact.name"
@@ -14,20 +13,23 @@
 <script>
 import { reactive } from 'vue'
 import { Toast } from 'vant'
-import Tabbar from '../../businessPeople/Tabbar.vue'
-import Nav from './Nav'
+import Tabbar from '../Tabbar.vue'
+import Header from '../../../components/Header'
+import { useRouter } from 'vue-router'
 
 export default {
+  name: 'FDContact',
   components: {
     Tabbar,
-    Nav
+    Header
   },
   setup () {
+    const router = useRouter()
     const currentContact = reactive({
       name: 'Zhangsan',
       tel: '13000000000'
     })
-    const onAdd = () => Toast('Add')
+    const onAdd = () => router.push({ path: '/fd/contact/add' })
     const onEdit = () => Toast('Edit')
     return {
       onAdd,

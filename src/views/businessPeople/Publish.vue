@@ -1,12 +1,7 @@
 <template>
-  <van-nav-bar
-    title="Publish Task"
-    left-text="Back"
-    right-text="Button"
-    left-arrow
-    @click-left="onClickLeft"
-    @click-right="onClickRight"
-  />
+<Header :name="'Publish Task'"/>
+<div class="wrapper">
+    <el-card class="box-card">
   <van-form @submit="onSubmit">
     <van-index-bar :index-list="indexList">
       <van-index-anchor
@@ -91,15 +86,20 @@
       </div>
     </van-index-bar>
   </van-form>
+  </el-card>
+</div>
 </template>
 
 <script>
 import { reactive } from 'vue'
-
+import Header from '../../components/Header'
 export default {
   name: 'PublishTask',
+  components: {
+    Header
+  },
   setup () {
-    const indexList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const indexList = [' ', ' ']
     const columns = ['Logo Design', 'Poster Design', 'H5 Design', 'Interaction Design']
     const state = reactive({
       name: '',
@@ -134,5 +134,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  @import '../../style/variables.scss';
+  .wrapper {
+    background-color: $docker-bgcolor;
+  }
+  .box-card {
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding-top: 1%;
+  }
 </style>
