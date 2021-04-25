@@ -1,29 +1,20 @@
 <template>
-  <van-nav-bar
-    title="Title"
-    left-text="Back"
-    right-text="Button"
-    left-arrow
-    @click-left="onClickLeft"
-    @click-right="onClickRight"
-  />
+  <Header :name="'Bid List'"/>
   <dropdown-menu />
   <task-list />
-  <tabbar />
 </template>
 
 <script>
 import { Toast } from 'vant'
 import DropdownMenu from './DropdownMenu.vue'
-import Tabbar from '../../administer/Tabbar.vue'
 import TaskList from './TaskList'
-
+import Header from '../../../components/Header'
 export default {
   name: 'Bid',
   components: {
     DropdownMenu,
-    Tabbar,
-    TaskList
+    TaskList,
+    Header
   },
   setup () {
     const onClickLeft = () => Toast('Back')

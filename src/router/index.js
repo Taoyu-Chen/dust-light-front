@@ -9,11 +9,13 @@ const routes = [
   },
   {
     path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    name: 'AboutMe',
+    component: () => import('../views/common/AboutMe.vue')
+  },
+  {
+    path: '/setting',
+    name: 'AccountSetting',
+    component: () => import('../views/common/AccountSetting.vue')
   },
   {
     path: '/admin',
@@ -38,17 +40,32 @@ const routes = [
   {
     path: '/bp/publish',
     name: 'PublishTask',
-    component: () => import('../views/businessPeople/publish/index.vue')
+    component: () => import('../views/businessPeople/Publish.vue')
   },
   {
     path: '/bp/contact',
     name: 'BPContact',
-    component: () => import('../views/businessPeople/contact/index.vue')
+    component: () => import('../views/businessPeople/contact/ContactBook.vue')
   },
   {
     path: '/bp/contact/add',
     name: 'BPAddContact',
     component: () => import('../views/businessPeople/contact/AddContact.vue')
+  },
+  {
+    path: '/bp/tasklist',
+    name: 'BPTaskList',
+    component: () => import('../views/businessPeople/contact/ContactBook.vue')
+  },
+  {
+    path: '/bp/task',
+    name: 'BPTask',
+    component: () => import('../views/businessPeople/task/index.vue')
+  },
+  {
+    path: '/bp/tasks',
+    name: 'BPTasks',
+    component: () => import('../views/businessPeople/Tasks.vue')
   },
   {
     path: '/bp/my',
@@ -68,7 +85,7 @@ const routes = [
   {
     path: '/fd/contact',
     name: 'FDContact',
-    component: () => import('../views/freelancerDesigner/contact/index.vue')
+    component: () => import('../views/freelancerDesigner/contact/ContactBook.vue')
   },
   {
     path: '/fd/contact/add',
@@ -79,6 +96,11 @@ const routes = [
     path: '/fd/my',
     name: 'FDMy',
     component: () => import('../views/freelancerDesigner/my/index.vue')
+  },
+  {
+    path: '/fd/history_order',
+    name: 'HistoryOrder',
+    component: () => import('../views/freelancerDesigner/historyOrder/index.vue')
   },
   {
     path: '/login',

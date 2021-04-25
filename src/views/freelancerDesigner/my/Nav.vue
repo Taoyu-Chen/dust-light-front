@@ -1,10 +1,6 @@
 <template>
   <van-nav-bar
-    title="Contact Book"
-    left-text="Back"
-    left-arrow
-    @click-left="onClickLeft"
-    @click-right="onClickRight"
+    title="Personal center"
   />
 </template>
 

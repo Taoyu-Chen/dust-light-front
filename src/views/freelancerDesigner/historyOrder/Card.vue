@@ -34,7 +34,7 @@ export default {
   }
 
   .text {
-    font-size: .14rem;
+    font-size: 14px;
   }
 
   .item {
@@ -45,6 +45,6 @@ export default {
 
   .box-card {
     width: 100%;
-    padding: 0rem .02rem .02rem 0rem;
+    padding: .02rem .05rem .02rem .05rem;
   }
 </style>

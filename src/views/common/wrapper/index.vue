@@ -1,7 +1,5 @@
 <template>
   <div class="wrapper">
-    <el-card class="box-card">
-    </el-card>
   </div>
 </template>
 
@@ -28,11 +26,5 @@ export default {
     bottom: .5rem;
     right: 0;
     background: $wrapper-fontcolor;
-  }
-  .box-card {
-    width: 98%;
-    margin-left: 1%;
-    margin-right: 1%;
-    padding-top: 1%;
   }
 </style>

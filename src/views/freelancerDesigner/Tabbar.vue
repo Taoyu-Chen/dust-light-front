@@ -1,9 +1,9 @@
 <template>
-  <van-tabbar v-model="active">
-    <van-tabbar-item icon="wap-home-o">Home</van-tabbar-item>
-    <van-tabbar-item icon="search">Bid</van-tabbar-item>
-    <van-tabbar-item icon="friends-o">Contact</van-tabbar-item>
-    <van-tabbar-item icon="user-circle-o">My</van-tabbar-item>
+  <van-tabbar route placeholder v-model="active">
+    <van-tabbar-item icon="wap-home-o" is-link to="/fd">Home</van-tabbar-item>
+    <van-tabbar-item icon="search" is-link to="/fd/bid">Bid</van-tabbar-item>
+    <van-tabbar-item icon="friends-o" is-link to="/fd/contact">Contact</van-tabbar-item>
+    <van-tabbar-item icon="user-circle-o" is-link to="/fd/my">My</van-tabbar-item>
   </van-tabbar>
 </template>
 
