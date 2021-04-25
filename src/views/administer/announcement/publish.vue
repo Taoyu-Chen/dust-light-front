@@ -3,7 +3,7 @@
     Please follow the Dust Light application announcement specification!
   </van-notice-bar>
   <el-card class="box-card">
-    <van-form @failed="onFailed">
+    <van-form @submit="handlePublishAnnouncement">
       <van-field
         v-model="state.title"
         name="title"
@@ -14,7 +14,7 @@
         v-model="state.type"
         readonly
         clickable
-        name="picker"
+        name="type"
         placeholder="Select announcement type"
         @click="showPicker = true"
       />
@@ -26,9 +26,10 @@
         />
       </van-popup>
       <van-field
-        v-model="state.detail"
+        v-model="state.text"
         rows="2"
         autosize
+        name="text"
         type="textarea"
         maxlength="500"
         placeholder="Dear Dust Light users:
@@ -48,25 +49,44 @@ Please forgive me for the inconvenience caused to you, and at the same time, ple
 
 <script>
 import { ref, reactive } from 'vue'
+import { post } from '../../../utils/request'
+// Logic related to the publish announcement
+const usePublishAnnounancetEffect = () => {
+  const state = reactive({
+    title: '',
+    type: '',
+    text: ''
+  })
+  const handlePublishAnnouncement = async (values) => {
+    try {
+      const result = await post('/api/announcements', values)
+      if (result?.errno === 0) {
+        console.log('success')
+      } else {
+        console.log('failed')
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  return { state, handlePublishAnnouncement }
+}
 
 export default {
   setup () {
-    const state = reactive({
-      title: '',
-      type: '',
-      detail: ''
-    })
     const showPicker = ref(false)
-    const columns = ['Delaware', 'Florida', 'Georqia', 'Indiana', 'Maine']
+    const columns = ['beta', 'stable', 'maintain']
     const onConfirm = (value) => {
       state.type = value
       showPicker.value = false
     }
+    const { state, handlePublishAnnouncement } = usePublishAnnounancetEffect()
     return {
       state,
       showPicker,
       columns,
-      onConfirm
+      onConfirm,
+      handlePublishAnnouncement
     }
   }
 }
