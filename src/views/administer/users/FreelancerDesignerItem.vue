@@ -2,7 +2,7 @@
   <van-swipe-cell>
     <van-cell :border="true" title="fd username" value="phone" >
       <van-button type="danger" size="mini" round>Delete</van-button>
-      <van-button type="warning" size="mini" round>Freeze</van-button>
+      <van-button type="warning" size="mini" round>Lock</van-button>
     </van-cell>
   </van-swipe-cell>
 </template>

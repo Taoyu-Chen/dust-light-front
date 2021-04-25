@@ -11,6 +11,21 @@
         :rules="[{ required: true, message: 'Please enter announcement title' }]"
       />
       <van-field
+        v-model="state.type"
+        readonly
+        clickable
+        name="picker"
+        placeholder="Select announcement type"
+        @click="showPicker = true"
+      />
+      <van-popup v-model:show="showPicker" position="bottom">
+        <van-picker
+          :columns="columns"
+          @confirm="onConfirm"
+          @cancel="showPicker = false"
+        />
+      </van-popup>
+      <van-field
         v-model="state.detail"
         rows="2"
         autosize
@@ -32,17 +47,26 @@ Please forgive me for the inconvenience caused to you, and at the same time, ple
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 
 export default {
   setup () {
     const state = reactive({
       title: '',
+      type: '',
       detail: ''
     })
-
+    const showPicker = ref(false)
+    const columns = ['Delaware', 'Florida', 'Georqia', 'Indiana', 'Maine']
+    const onConfirm = (value) => {
+      state.type = value
+      showPicker.value = false
+    }
     return {
-      state
+      state,
+      showPicker,
+      columns,
+      onConfirm
     }
   }
 }

@@ -1,6 +1,5 @@
 <template>
-  <van-nav-bar title="Announcement edit" left-text="Back" left-arrow>
-  </van-nav-bar>
+  <Header :name="'Publish Announcement'"/>
   <div class="wrapper">
     <div class="gap"></div>
     <publish />
@@ -11,9 +10,9 @@
 <script>
 import Publish from './publish'
 import Tabbar from '../Tabbar.vue'
-
+import Header from '../../../components/Header'
 export default {
-  components: { Tabbar, Publish },
+  components: { Tabbar, Publish, Header },
   name: 'PublishAnnouncement',
   setup () {
 
