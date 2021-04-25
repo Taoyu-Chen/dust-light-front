@@ -21,7 +21,7 @@
         v-model="state.type"
         readonly
         clickable
-        name="usertype"
+        name="type"
         label="User type"
         placeholder="Select user type"
         @click="state.showPicker = true"
@@ -67,25 +67,37 @@
 <script>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { post } from '../../utils/request'
+
+const router = useRouter()
+
+const useRegisterEffect = () => {
+  const state = reactive({
+    username: '',
+    password: '',
+    type: '',
+    telephone: '',
+    personalSignature: ''
+  })
+  const handleRegister = async (values) => {
+    try {
+      const result = await post('/api/users/register', values)
+      console.log(result)
+      if (result?.errno === 0) {
+        router.push({ name: 'Login' })
+      } else {
+      }
+    } catch (e) {
+    }
+  }
+  return { state, handleRegister }
+}
 export default {
   name: 'Register',
   setup () {
-    const router = useRouter()
-    const state = reactive({
-      username: '',
-      password: '',
-      type: '',
-      telephone: '',
-      personalSignature: ''
-    })
-
     const columns = ['Administer', 'Business People', 'Freelancer Designer']
 
-    const handleRegister = (values) => {
-      console.log('submit', values)
-      // localStorage.isLogin = true
-      // router.push({ name: 'Home' })
-    }
+    const { state, handleRegister } = useRegisterEffect()
 
     const onConfirm = (type) => {
       state.type = type
