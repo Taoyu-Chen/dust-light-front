@@ -1,21 +1,40 @@
 <template>
   <Header :name="'Contact Book'" />
   <van-contact-card type="add" @click="onAdd" />
-  <van-contact-card
-    type="edit"
-    :name="currentContact.name"
-    :tel="currentContact.tel"
-    @click="onEdit"
-  />
+  <div
+    v-for="item in list"
+    :key="item._id"
+  >
+    <van-contact-card
+      type="edit"
+      :name="item.contact_username"
+      :tel="item.contact_telephone"
+    />
+  </div>
   <tabbar />
 </template>
 
 <script>
-import { reactive } from 'vue'
-import { Toast } from 'vant'
+import { reactive, toRefs, watchEffect } from 'vue'
 import Tabbar from '../Tabbar.vue'
+import { get } from '../../../utils/request'
 import Header from '../../../components/Header'
 import { useRouter } from 'vue-router'
+
+// Logic related to the contact list
+const useContactListEffect = () => {
+  const content = reactive({ list: [] })
+  const getContentData = async () => {
+    const result = await get('/api/contacts')
+    console.log(result)
+    if (result?.errno === 0) {
+      content.list = result.data.contacts
+    }
+  }
+  watchEffect(() => { getContentData() })
+  const { list } = toRefs(content)
+  return { list }
+}
 
 export default {
   name: 'FDContact',
@@ -25,16 +44,12 @@ export default {
   },
   setup () {
     const router = useRouter()
-    const currentContact = reactive({
-      name: 'Zhangsan',
-      tel: '13000000000'
-    })
+
+    const { list } = useContactListEffect()
     const onAdd = () => router.push({ path: '/fd/contact/add' })
-    const onEdit = () => Toast('Edit')
     return {
-      onAdd,
-      onEdit,
-      currentContact
+      list,
+      onAdd
     }
   }
 }
