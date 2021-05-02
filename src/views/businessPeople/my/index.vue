@@ -6,31 +6,114 @@
           <div class="user__info">
             <img class="user__img" src="https://gitee.com/sevensound/pic-cloud/raw/master/user_logo.png"/>
             <div class="user__desc">
-              <span>Username：</span>
-              <span>Email：</span>
-              <span class="name">Telephone:</span>
+              <span>Username：{{userInfo.username}}</span>
+              <span>Email：{{userInfo.email}}</span>
+              <span class="name">Telephone:{{userInfo.telephone}}</span>
             </div>
           </div>
         </div>
     </el-card>
     <div class="gap"></div>
     <div class="message">
-      <share />
+      <van-cell title="History Task" @click="toHistoryTasks" >
+        <van-icon name="arrow" />
+      </van-cell>
+      <van-cell title="Customer service hotline" >
+        <van-icon name="arrow" />
+      </van-cell>
+      <van-cell title="Show ShareSheet" @click="showShare = true" >
+        <van-icon name="arrow" />
+      </van-cell>
+      <van-cell title="About Me" @click="ToAboutMe" >
+        <van-icon name="arrow" />
+      </van-cell>
+      <van-share-sheet
+        v-model:show="showShare"
+        title="Share"
+        :options="options"
+        @select="onSelect"
+      />
     </div>
-
+    <van-button class="logout-btn" type="primary" size="large" @click="onLogout" round>Logout</van-button>
   </div>
   <tabbar />
 </template>
 
 <script>
-
+import { ref, reactive, toRefs, watchEffect } from 'vue'
+import { get } from '../../../utils/request'
 import Tabbar from '../Tabbar.vue'
 import Nav from './Nav'
-import Share from './Share.vue'
-export default {
-  components: { Tabbar, Nav, Share },
-  setup () {
+import { useRouter } from 'vue-router'
+import { Notify } from 'vant'
 
+const useUserInfoEffect = () => {
+  const router = useRouter()
+  const content = reactive({ userInfo: {} })
+  const getContentData = async () => {
+    const result = await get('/api/users/user_info')
+    console.log(result)
+    if (result?.errno === 0) {
+      content.userInfo = result.data
+    }
+  }
+  const onLogout = async () => {
+    const result = await get('/api/users/logout')
+    console.log(result)
+    if (result?.errno === 0) {
+      Notify({ type: 'danger', message: 'You have successfully logged out!' })
+      localStorage.clear()
+      router.push({ name: 'Login' })
+    }
+  }
+  watchEffect(() => { getContentData() })
+  const { userInfo } = toRefs(content)
+  console.log(userInfo)
+  return { userInfo, onLogout }
+}
+
+const useRouterEffect = () => {
+  const router = useRouter()
+  const ToAboutMe = () => {
+    router.push({ name: 'AboutMe' })
+  }
+  const toHistoryTasks = () => {
+    router.push({ path: '/bp/history_task' })
+  }
+  return {
+    ToAboutMe,
+    toHistoryTasks
+  }
+}
+
+export default {
+  components: { Tabbar, Nav },
+  setup () {
+    const showShare = ref(false)
+    const options = [
+      [
+        { name: 'Wechat', icon: 'wechat' },
+        { name: 'Wechat Moments', icon: 'wechat-moments' },
+        { name: 'Weibo', icon: 'weibo' },
+        { name: 'QQ', icon: 'qq' }
+      ],
+      [
+        { name: 'Link', icon: 'link' },
+        { name: 'Poster', icon: 'poster' },
+        { name: 'Qrcode', icon: 'qrcode' },
+        { name: 'Weapp Qrcode', icon: 'weapp-qrcode' }
+      ]
+    ]
+    const { ToAboutMe, toHistoryTasks } = useRouterEffect()
+    const { userInfo, onLogout } = useUserInfoEffect()
+    return {
+      userInfo,
+      options,
+      showShare,
+      ToAboutMe,
+      onLogout,
+      toHistoryTasks
+    }
   }
 }
 </script>
@@ -79,5 +162,10 @@ export default {
     bottom: .5rem;
     right: 0;
     background: $wrapper-fontcolor;
+  }
+  .logout-btn {
+    margin-top: .2rem;
+    margin-left: 2%;
+    width: 96%;
   }
 </style>
