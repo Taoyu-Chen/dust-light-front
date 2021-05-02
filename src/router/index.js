@@ -53,19 +53,14 @@ const routes = [
     component: () => import('../views/businessPeople/contact/AddContact.vue')
   },
   {
-    path: '/bp/tasklist',
+    path: '/bp/history_task',
     name: 'BPTaskList',
-    component: () => import('../views/businessPeople/contact/ContactBook.vue')
+    component: () => import('../views/businessPeople/historyOrder/index.vue')
   },
   {
-    path: '/bp/task',
+    path: '/bp/task/:id',
     name: 'BPTask',
-    component: () => import('../views/businessPeople/task/index.vue')
-  },
-  {
-    path: '/bp/tasks',
-    name: 'BPTasks',
-    component: () => import('../views/businessPeople/Tasks.vue')
+    component: () => import('../views/businessPeople/task/TaskDetail.vue')
   },
   {
     path: '/bp/my',
@@ -98,9 +93,19 @@ const routes = [
     component: () => import('../views/freelancerDesigner/my/index.vue')
   },
   {
+    path: '/fd/task',
+    name: 'FDTask',
+    component: () => import('../views/freelancerDesigner/task/Task.vue')
+  },
+  {
     path: '/fd/history_order',
     name: 'HistoryOrder',
     component: () => import('../views/freelancerDesigner/historyOrder/index.vue')
+  },
+  {
+    path: '/fd/submit/:id',
+    name: 'SubmitTask',
+    component: () => import('../views/freelancerDesigner/SubmitTask.vue')
   },
   {
     path: '/login',
@@ -108,7 +113,7 @@ const routes = [
     component: () => import('../views/login/Login.vue'),
     beforeEnter (to, from, next) {
       const { isLogin } = localStorage
-      isLogin ? next({ name: 'Home' }) : next()
+      isLogin ? next() : next()
     }
   },
   {

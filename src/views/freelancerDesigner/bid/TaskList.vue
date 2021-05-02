@@ -7,7 +7,6 @@
       @load="onLoad"
     >
       <card />
-      <van-cell v-for="item in state.list" :key="item" :title="item" />
     </van-list>
   </van-pull-refresh>
 </template>

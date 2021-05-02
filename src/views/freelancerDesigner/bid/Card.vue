@@ -1,27 +1,67 @@
 <template>
-  <el-card class="box-card">
-  <template #header>
-    <div class="card-header">
-      <span>Card name</span>
-      <div>
-        <el-button class="button" size="mini" type="primary" plain>Bid</el-button>
-        <el-button class="Detail" size="mini" type="primary" plain>Detail</el-button>
+  <div
+    v-for="item in list"
+    :key="item._id"
+  >
+    <el-card class="box-card">
+      <template #header>
+        <div class="card-header">
+          <span>{{item.name}}&nbsp;&nbsp;&nbsp;<van-tag type="success">Bidderable</van-tag></span>
+          <div>
+            <el-button class="button" size="mini" round type="primary" @click="bidTask(item._id)" plain>Bid</el-button>
+          </div>
+        </div>
+      </template>
+      <div class="text item">
+        <p>budget:{{item.budget}}$</p>
+        <p>deadline:{{item.deadline}}</p>
+        <p>{{item.type}}</p>
       </div>
-    </div>
-  </template>
-  <div class="text item">
-    <p>price</p>
-    <p>date</p>
-    <p>number</p>
+    </el-card>
   </div>
-</el-card>
-
 </template>
 
 <script>
+import { reactive, toRefs, watchEffect } from 'vue'
+import { get } from '../../../utils/request'
+import { Notify } from 'vant'
+
+// Logic related to the biderable task list
+const useTaskListEffect = () => {
+  const content = reactive({ list: [] })
+  const getContentData = async () => {
+    const result = await get('/api/tasks/bid/list')
+    if (result?.errno === 0) {
+      content.list = result.data
+    }
+    console.log(result.data)
+  }
+
+  watchEffect(() => { getContentData() })
+  const { list } = toRefs(content)
+  return { list }
+}
+
+const useBidTaskEffect = () => {
+  const bidTask = async (id) => {
+    console.log(id)
+    console.log(`/api/tasks/fd/bid/${id}`)
+    const result = await get(`/api/tasks/fd/bid/${id}`)
+    console.log(result)
+    if (result?.errno === 0) {
+      Notify({ type: 'success', message: 'You have successfully bid this task!' })
+    } else {
+      Notify({ type: 'danger', message: 'You did not successfully bid for this task!' })
+    }
+  }
+  return { bidTask }
+}
+
 export default {
   setup () {
-
+    const { list } = useTaskListEffect()
+    const { bidTask } = useBidTaskEffect()
+    return { list, bidTask }
   }
 }
 </script>
@@ -44,7 +84,7 @@ export default {
   }
 
   .box-card {
+    margin-top: 1%;
     width: 100%;
-    padding: 0rem .02rem .02rem 0rem;
   }
 </style>
