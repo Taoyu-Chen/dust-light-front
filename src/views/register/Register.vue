@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <img class="wrapper__img" src="https://gitee.com/sevensound/pic-cloud/raw/master/dust_light_logo_v4.png"/>
+    <img class="wrapper__img" :src="Logo"/>
     <van-form @submit="handleRegister">
       <van-field
         v-model="state.username"
@@ -60,7 +60,7 @@
         </van-button>
       </div>
     </van-form>
-    <div class="wrapper__register-link" @click="handleToLoginClick">Already have an account to log in</div>
+    <div class="wrapper__register-link" >Already have an account to log in</div>
   </div>
 </template>
 
@@ -68,10 +68,11 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { post } from '../../utils/request'
-
-const router = useRouter()
+import { Notify } from 'vant'
+import Logo from '../../assets/dust_light_logo_v4.png'
 
 const useRegisterEffect = () => {
+  const router = useRouter()
   const state = reactive({
     username: '',
     password: '',
@@ -82,32 +83,40 @@ const useRegisterEffect = () => {
   const handleRegister = async (values) => {
     try {
       const result = await post('/api/users/register', values)
-      console.log(result)
       if (result?.errno === 0) {
+        Notify({ type: 'success', message: 'You have successfully register!' })
         router.push({ name: 'Login' })
       } else {
+        Notify({ type: 'danger', message: 'You did not successfully register!' })
       }
     } catch (e) {
+      Notify({ type: 'danger', message: `error is ${e.message}` })
     }
   }
   return { state, handleRegister }
 }
+
+const useToLoginEffect = () => {
+  const router = useRouter()
+  const handleToLoginClick = () => {
+    router.push({ name: 'Login' })
+  }
+  return { handleToLoginClick }
+}
+
 export default {
   name: 'Register',
   setup () {
     const columns = ['Administer', 'Business People', 'Freelancer Designer']
 
     const { state, handleRegister } = useRegisterEffect()
-
+    const { handleToLoginClick } = useToLoginEffect()
     const onConfirm = (type) => {
       state.type = type
       state.showPicker = false
     }
 
-    const handleToLoginClick = () => {
-      router.push({ name: 'Login' })
-    }
-    return { state, handleRegister, handleToLoginClick, columns, onConfirm }
+    return { state, handleRegister, handleToLoginClick, columns, onConfirm, Logo }
   }
 }
 </script>

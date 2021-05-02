@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <img class="wrapper__img" src="https://gitee.com/sevensound/pic-cloud/raw/master/dust_light_logo_v4.png"/>
+    <img class="wrapper__img" :src="Logo"/>
     <van-form @submit="handleLogin">
       <van-field
         v-model="state.username"
@@ -48,7 +48,8 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { post } from '../../utils/request'
-
+import { Notify } from 'vant'
+import Logo from '../../assets/dust_light_logo_v4.png'
 // handle login logic
 const useLoginEffect = () => {
   const router = useRouter()
@@ -60,21 +61,31 @@ const useLoginEffect = () => {
   const handleLogin = async (values) => {
     try {
       const result = await post('/api/users/login', values)
+      console.log(result)
       if (result?.errno === 0) {
-        console.log(result)
+        Notify({ type: 'success', message: 'You have successfully logged in!' })
         localStorage.isLogin = true
-        router.push({ name: 'FDHome' })
+        const type = result.data.type
+        if (type === 'Administer') {
+          router.push({ name: 'AdminHome' })
+        }
+        if (type === 'Business People') {
+          router.push({ name: 'BPHome' })
+        }
+        if (type === 'Freelancer Designer') {
+          router.push({ name: 'FDHome' })
+        }
       } else {
-        console.log('xxx')
+        Notify({ type: 'danger', message: 'You did not successfully logged in!' })
       }
     } catch (e) {
-      console.log('xxx')
+      Notify({ type: 'danger', message: `error is ${e.message}` })
     }
   }
   return { state, handleLogin }
 }
 
-const useRegisterEffect = () => {
+const useToRegisterEffect = () => {
   const router = useRouter()
   const handleToRegisterClick = () => {
     router.push({ name: 'Register' })
@@ -92,9 +103,9 @@ export default {
     }
 
     const { state, handleLogin } = useLoginEffect()
-    const { handleToRegisterClick } = useRegisterEffect()
+    const { handleToRegisterClick } = useToRegisterEffect()
 
-    return { state, handleLogin, handleToRegisterClick, columns, onConfirm }
+    return { state, handleLogin, handleToRegisterClick, columns, onConfirm, Logo }
   }
 }
 </script>
