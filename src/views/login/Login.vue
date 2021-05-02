@@ -66,6 +66,7 @@ const useLoginEffect = () => {
         Notify({ type: 'success', message: 'You have successfully logged in!' })
         localStorage.isLogin = true
         const type = result.data.type
+        localStorage.type = type
         if (type === 'Administer') {
           router.push({ name: 'AdminHome' })
         }

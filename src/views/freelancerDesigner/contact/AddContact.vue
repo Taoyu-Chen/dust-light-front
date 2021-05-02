@@ -17,7 +17,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { post } from '../../../utils/request'
-
+import { Notify } from 'vant'
 // Logic related to the announcement list
 const useContactEffect = () => {
   const onSave = async (contactInfo) => {
@@ -46,12 +46,12 @@ const useContactEffect = () => {
       const result = await post('/api/contacts/delete', values)
       console.log(result)
       if (result?.errno === 0) {
-        console.log(result)
+        Notify({ type: 'success', message: 'You have successfully add contact!' })
       } else {
-        console.log('failed')
+        Notify({ type: 'danfer', message: 'You did not succcessfully add contact!' })
       }
     } catch (e) {
-      console.log(e)
+      Notify({ type: 'danger', message: `error is ${e.message}` })
     }
   }
   return { onSave, onDelete }

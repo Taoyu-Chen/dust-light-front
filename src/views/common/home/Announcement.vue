@@ -28,7 +28,6 @@ const useAnnounancetListEffect = () => {
     if (result?.errno === 0 && result?.data?.length) {
       content.list = result.data
     }
-    console.log(result)
   }
   watchEffect(() => { getContentData() })
   const { list } = toRefs(content)

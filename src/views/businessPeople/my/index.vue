@@ -52,23 +52,21 @@ const useUserInfoEffect = () => {
   const content = reactive({ userInfo: {} })
   const getContentData = async () => {
     const result = await get('/api/users/user_info')
-    console.log(result)
     if (result?.errno === 0) {
       content.userInfo = result.data
     }
   }
   const onLogout = async () => {
+    localStorage.clear()
     const result = await get('/api/users/logout')
-    console.log(result)
     if (result?.errno === 0) {
       Notify({ type: 'danger', message: 'You have successfully logged out!' })
-      localStorage.clear()
+
       router.push({ name: 'Login' })
     }
   }
   watchEffect(() => { getContentData() })
   const { userInfo } = toRefs(content)
-  console.log(userInfo)
   return { userInfo, onLogout }
 }
 

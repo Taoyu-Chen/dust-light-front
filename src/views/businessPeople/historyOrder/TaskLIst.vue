@@ -56,7 +56,6 @@ const useBPTaskListEffect = () => {
     if (result?.errno === 0) {
       content.list = result.data
     }
-    console.log(result.data)
   }
 
   watchEffect(() => { getContentData() })

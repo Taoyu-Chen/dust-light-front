@@ -54,22 +54,19 @@ const useTaskEffect = () => {
     description: ''
   })
   const handleSubmitTask = async (values) => {
-    console.log(values)
     console.log(`api/tasks/fd/submit/${taskId}`)
     try {
       const description = {
         description: values.description
       }
-      console.log(description)
       const result = await post(`api/tasks/fd/submit/${taskId}`, description)
       if (result?.errno === 0) {
-        console.log(result)
         Notify({ type: 'success', message: 'Upload your work has been successful' })
       } else {
-        console.log('xxx')
+        Notify({ type: 'danger', message: 'You did not successfully upload your work!' })
       }
     } catch (e) {
-      console.log('xxx')
+      Notify({ type: 'danger', message: `error is ${e.message}` })
     }
   }
   return { state, handleSubmitTask }

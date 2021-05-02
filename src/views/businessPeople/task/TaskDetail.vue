@@ -66,7 +66,6 @@ const useTaskEffect = (taskId) => {
 
   const onCancelTask = async (taskId) => {
     const result = await get(`/api/tasks/bp/cancel/${taskId}`)
-    console.log(result)
     if (result?.errno === 0) {
       content.task = result.data
     }
@@ -83,7 +82,6 @@ const useBidderEffect = () => {
       fdUsername: username
     }
     const result = await post(`/api/tasks/bp/selectFD/${taskId}`, bidder)
-    console.log(result)
     if (result?.errno === 0) {
       router.go(0)
       Notify({ type: 'success', message: 'You have successfully bid this task!' })
@@ -111,7 +109,6 @@ const useHandleTaskEffect = () => {
   const router = useRouter()
   const onAcceptTask = async (taskId) => {
     const result = await get(`/api/tasks/bp/accept/${taskId}`)
-    console.log(result)
     if (result?.errno === 0) {
       router.go(0)
       Notify({ type: 'success', message: 'You have successfully accept this work!' })

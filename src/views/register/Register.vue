@@ -107,7 +107,7 @@ const useToLoginEffect = () => {
 export default {
   name: 'Register',
   setup () {
-    const columns = ['Administer', 'Business People', 'Freelancer Designer']
+    const columns = ['Business People', 'Freelancer Designer']
 
     const { state, handleRegister } = useRegisterEffect()
     const { handleToLoginClick } = useToLoginEffect()

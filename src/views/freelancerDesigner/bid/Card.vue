@@ -44,10 +44,8 @@ const useTaskListEffect = () => {
 
 const useBidTaskEffect = () => {
   const bidTask = async (id) => {
-    console.log(id)
     console.log(`/api/tasks/fd/bid/${id}`)
     const result = await get(`/api/tasks/fd/bid/${id}`)
-    console.log(result)
     if (result?.errno === 0) {
       Notify({ type: 'success', message: 'You have successfully bid this task!' })
     } else {

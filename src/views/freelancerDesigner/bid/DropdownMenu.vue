@@ -17,13 +17,15 @@ export default {
     })
     const option1 = [
       { text: 'All', value: 0 },
-      { text: 'Option2', value: 1 },
-      { text: 'Option3', value: 2 }
+      { text: 'Poster Design', value: 1 },
+      { text: 'Icon Design', value: 2 },
+      { text: 'UI Design', value: 3 },
+      { text: 'Brochure Design', value: 4 }
     ]
     const option2 = [
       { text: 'Default Sort', value: 'a' },
-      { text: 'Option B', value: 'b' },
-      { text: 'Option C', value: 'c' }
+      { text: 'Order', value: 'b' },
+      { text: 'Reverse order', value: 'c' }
     ]
 
     return {
