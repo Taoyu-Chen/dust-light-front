@@ -2,7 +2,7 @@
 <Header :name="'Publish Task'"/>
 <div class="wrapper">
     <el-card class="box-card">
-  <van-form @submit="onSubmit">
+  <van-form @submit="handlePublishTask">
     <van-index-bar :index-list="indexList">
       <van-index-anchor
         index="bi"
@@ -12,14 +12,14 @@
       </van-index-anchor>
       <van-field
         v-model="state.name"
-        name="Task name"
+        name="name"
         label="Task name"
         placeholder="Please enter task name"
         :rules="[{ required: true, message: 'Task name is required' }]"
       />
       <van-field
         v-model="state.budget"
-        name="Task budget"
+        name="budget"
         label="Task budget"
         placeholder="Please enter task budget"
         :rules="[{ required: true, message: 'Task budget is required' }]"
@@ -28,7 +28,7 @@
         v-model="state.type"
         readonly
         clickable
-        name="tasktype"
+        name="type"
         label="Task type"
         placeholder="Select task type"
         @click="state.showPicker = true"
@@ -45,7 +45,7 @@
         v-model="state.deadline"
         readonly
         clickable
-        name="Deadline"
+        name="deadline"
         label="Deadline"
         placeholder="Select task deadline"
         @click="state.showCalendar = true"
@@ -58,14 +58,14 @@
       >
         Supplement Information
       </van-index-anchor>
-      <van-field name="stepper" label="Bid Number">
+      <van-field name="bidNumber" label="Bid Number">
         <template #input>
           <van-stepper v-model="bidNumber" />
         </template>
       </van-field>
       <van-field name="uploader" label="Uploader">
         <template #input>
-          <van-uploader v-model="uploadFile" />
+          <van-uploader v-model="uploader" />
         </template>
       </van-field>
       <van-index-anchor index="" />
@@ -73,6 +73,7 @@
         v-model="state.detail"
         rows="2"
         autosize
+        name="detail"
         label="Detail"
         type="textarea"
         maxlength="200"
@@ -93,6 +94,33 @@
 <script>
 import { reactive } from 'vue'
 import Header from '../../components/Header'
+import { post } from '../../utils/request'
+import { Notify } from 'vant'
+// handle publish task logic
+const useTaskEffect = () => {
+  const state = reactive({
+    name: '',
+    budget: '',
+    type: '',
+    deadline: '',
+    bidNumber: 1,
+    uploader: '',
+    detail: ''
+  })
+  const handlePublishTask = async (values) => {
+    try {
+      const result = await post('/api/tasks/create', values)
+      if (result?.errno === 0) {
+        Notify({ type: 'success', message: 'You have successfully publish a task!' })
+      } else {
+        Notify({ type: 'danger', message: 'You did not successfully publish a task!' })
+      }
+    } catch (e) {
+      Notify({ type: 'danger', message: `error is ${e.message}` })
+    }
+  }
+  return { state, handlePublishTask }
+}
 export default {
   name: 'PublishTask',
   components: {
@@ -101,29 +129,20 @@ export default {
   setup () {
     const indexList = [' ', ' ']
     const columns = ['Logo Design', 'Poster Design', 'H5 Design', 'Interaction Design']
-    const state = reactive({
-      name: '',
-      budget: '',
-      type: '',
-      deadline: '',
-      bidNumber: 1,
-      uploadFile: '',
-      detail: ''
-    })
-    const onSubmit = (values) => {
-      console.log('submit', values)
-    }
+
     const onConfirm = (type) => {
       state.type = type
       state.showPicker = false
     }
+
     const onDeadlineConfirm = (date) => {
-      state.deadline = `${date.getMonth() + 1}/${date.getDate()}`
+      state.deadline = `2021-${date.getMonth() + 1}-${date.getDate()}`
       state.showCalendar = false
     }
+    const { state, handlePublishTask } = useTaskEffect()
     return {
       state,
-      onSubmit,
+      handlePublishTask,
       indexList,
       columns,
       onConfirm,
