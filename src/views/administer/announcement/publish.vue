@@ -50,6 +50,8 @@ Please forgive me for the inconvenience caused to you, and at the same time, ple
 <script>
 import { ref, reactive } from 'vue'
 import { post } from '../../../utils/request'
+import { Notify } from 'vant'
+
 // Logic related to the publish announcement
 const usePublishAnnounancetEffect = () => {
   const state = reactive({
@@ -61,12 +63,12 @@ const usePublishAnnounancetEffect = () => {
     try {
       const result = await post('/api/announcements', values)
       if (result?.errno === 0) {
-        console.log('success')
+        Notify({ type: 'success', message: 'Successful announcement' })
       } else {
-        console.log('failed')
+        Notify({ type: 'danger', message: 'Unsuccessful announcement' })
       }
     } catch (e) {
-      console.log(e)
+      Notify({ type: 'danger', message: `error is ${e.message}` })
     }
   }
   return { state, handlePublishAnnouncement }

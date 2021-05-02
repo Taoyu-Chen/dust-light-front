@@ -11,11 +11,13 @@
 </template>
 
 <script>
+import home1 from '../../../assets/home1.png'
+import home2 from '../../../assets/home2.png'
 export default {
   setup () {
     const images = [
-      'https://gitee.com/sevensound/pic-cloud/raw/master/home1.png',
-      'https://gitee.com/sevensound/pic-cloud/raw/master/home2.png'
+      home1,
+      home2
     ]
     return { images }
   }

@@ -11,6 +11,7 @@
 import Publish from './publish'
 import Tabbar from '../Tabbar.vue'
 import Header from '../../../components/Header'
+
 export default {
   components: { Tabbar, Publish, Header },
   name: 'PublishAnnouncement',

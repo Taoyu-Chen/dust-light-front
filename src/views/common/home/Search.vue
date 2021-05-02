@@ -1,6 +1,7 @@
 <template>
   <div class="gap"></div>
   <van-search
+    class="find"
     shape="round"
     v-model="value"
     placeholder="Enter search keywords"
@@ -23,7 +24,10 @@ export default {
   @import '../../../style/variables.scss';
   .gap {
     margin: 0 0rem;
-    height: .02rem;
+    height: .03rem;
     background: $content-bgcolor;
+  }
+  .find {
+    position: relative;
   }
 </style>

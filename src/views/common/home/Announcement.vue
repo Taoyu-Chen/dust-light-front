@@ -1,21 +1,10 @@
 <template>
-  <a-page-header
-      class="demo-page-header"
-      style="border: 1px solid rgb(235, 237, 240)"
-      title="Announcement Title"
-      sub-title="Post time"
-    >
-      <a-descriptions size="small" :column="1">
-        <a-descriptions-item>content summary</a-descriptions-item>
-    </a-descriptions>
-
-  </a-page-header>
   <van-cell-group>
     <div
       v-for="item in list"
       :key="item._id"
     >
-      <van-cell @click="showDialog(item)" is-link>
+      <van-cell class="cell" @click="showDialog(item)" is-link>
         <!-- Use the title slot to customize the title -->
         <template #title>
           <span class="custom-title">{{item.title+'&nbsp;&nbsp;&nbsp;'}}</span>
@@ -39,6 +28,7 @@ const useAnnounancetListEffect = () => {
     if (result?.errno === 0 && result?.data?.length) {
       content.list = result.data
     }
+    console.log(result)
   }
   watchEffect(() => { getContentData() })
   const { list } = toRefs(content)
@@ -68,5 +58,8 @@ export default {
 <style lang="scss" scoped>
   .demo-page-header :deep(tr:last-child td) {
   padding-bottom: 0;
+  }
+  .cell {
+    margin-top: .02rem;
   }
 </style>
