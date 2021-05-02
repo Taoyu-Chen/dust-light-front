@@ -34,12 +34,12 @@
       </van-cell>
       </div>
     </van-swipe-cell>
-    <el-card v-if="task.status === 2" class="box-card2 card">
+    <el-card v-if="task.status === 2 || task.status === 3" class="box-card2 card">
       <van-empty :description="task.work.uploader_description" class="card"/>
     </el-card>
     <van-button v-if="task.status === 0 || task.status === 1" class="button" round type="warning" size="large" @click="onCancelTask(taskId)">Cancel Task</van-button>
-    <van-button v-if="task.status === 2" class="button" round type="primary" size="large" @click="onAcceptTask">Accept Task</van-button>
-    <van-button v-if="task.status === 2" class="button" round type="danger" size="large" @click="onReturnTask">Return Task</van-button>
+    <van-button v-if="task.status === 2" class="button" round type="primary" size="large" @click="onAcceptTask(taskId)">Accept Task</van-button>
+    <van-button v-if="task.status === 2" class="button" round type="danger" size="large" @click="onReturnTask(taskId)">Return Task</van-button>
     </div>
   <tabbar />
 </template>
@@ -120,7 +120,7 @@ const useHandleTaskEffect = () => {
     }
   }
   const onReturnTask = async (taskId) => {
-    const result = await get(`/api/tasks/bp/accept/${taskId}`)
+    const result = await get(`/api/tasks/bp/return/${taskId}`)
     console.log(result)
     if (result?.errno === 0) {
       router.go(0)

@@ -18,7 +18,7 @@ import Header from '../../../components/Header'
 import { useRouter } from 'vue-router'
 
 export default {
-  name: 'FDContact',
+  name: 'BPContact',
   components: {
     Tabbar,
     Header
@@ -29,7 +29,7 @@ export default {
       name: 'Zhangsan',
       tel: '13000000000'
     })
-    const onAdd = () => router.push({ path: '/fd/contact/add' })
+    const onAdd = () => router.push({ path: '/bp/contact/add' })
     const onEdit = () => Toast('Edit')
     return {
       onAdd,

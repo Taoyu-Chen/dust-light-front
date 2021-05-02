@@ -15,16 +15,54 @@
 
 <script>
 import { ref } from 'vue'
-import { Toast } from 'vant'
 import { useRouter } from 'vue-router'
+import { post } from '../../../utils/request'
+
+// Logic related to the announcement list
+const useContactEffect = () => {
+  const onSave = async (contactInfo) => {
+    try {
+      const values = {
+        contact_username: contactInfo.name,
+        contact_telephone: contactInfo.tel
+      }
+      const result = await post('/api/contacts', values)
+      console.log(result)
+      if (result?.errno === 0) {
+        console.log(result)
+      } else {
+        console.log('failed')
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const onDelete = async (contactInfo) => {
+    try {
+      const values = {
+        contact_username: contactInfo.name,
+        contact_telephone: contactInfo.tel
+      }
+      const result = await post('/api/contacts/delete', values)
+      console.log(result)
+      if (result?.errno === 0) {
+        console.log(result)
+      } else {
+        console.log('failed')
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  return { onSave, onDelete }
+}
 
 export default {
   name: 'BPAddContact',
   setup () {
     const router = useRouter()
     const editingContact = ref({})
-    const onSave = (contactInfo) => Toast('Save')
-    const onDelete = (contactInfo) => Toast('Delete')
+    const { onSave, onDelete } = useContactEffect()
     const onClickLeft = () => {
       router.push({ name: 'BPContact' })
     }
