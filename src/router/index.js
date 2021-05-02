@@ -1,12 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/home/Home.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
   {
     path: '/about',
     name: 'AboutMe',
@@ -110,19 +104,26 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/login/Login.vue'),
-    beforeEnter (to, from, next) {
-      const { isLogin } = localStorage
-      isLogin ? next() : next()
-    }
+    component: () => import('../views/login/Login.vue')
   },
   {
     path: '/register',
     name: 'Register',
     component: () => import('../views/register/Register.vue'),
     beforeEnter (to, from, next) {
-      const { isLogin } = localStorage
-      isLogin ? next({ name: 'Home' }) : next()
+      const { isLogin, type } = localStorage
+      if (type === 'Administer') {
+        const routerName = 'AdminHome'
+        isLogin ? next({ name: routerName }) : next()
+      }
+      if (type === 'Business People') {
+        const routerName = 'BPHome'
+        isLogin ? next({ name: routerName }) : next()
+      }
+      if (type === 'Freelancer Designer') {
+        const routerName = 'FDHome'
+        isLogin ? next({ name: routerName }) : next()
+      }
     }
   }
 ]
