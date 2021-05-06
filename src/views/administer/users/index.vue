@@ -27,11 +27,11 @@ import { useRouter } from 'vue-router'
 
 const useLogoutEffect = () => {
   const router = useRouter()
-  localStorage.clear()
   const onLogout = async () => {
     const result = await get('/api/users/logout')
     console.log(result)
     if (result?.errno === 0) {
+      localStorage.clear()
       Notify({ type: 'danger', message: 'You have successfully logged out!' })
       router.push({ name: 'Login' })
     }
